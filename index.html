@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaflet.js Map</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+</head>
+<body>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Initialize the map
+    const map = L.map('map').setView([28.6139,77.2090], 4.5);
+
+    // Add a tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Add a marker
+    // const marker = L.marker([28.6139,77.2090]).addTo(map);
+    // marker.bindPopup('Delhi').openPopup();
+
+    const locations= [
+    { coords: [28.6139, 77.2090], popup: "New Delhi" },
+    { coords: [19.0760, 72.8777], popup: "Mumbai" },
+    { coords: [22.5726, 88.3639], popup: "Kolkata" },
+    { coords: [13.0827, 80.2707], popup: "Chennai" },
+    { coords: [12.9716, 77.5946], popup: "Bengaluru" }
+];
+locations.forEach(location => {
+    L.marker(location.coords)
+     .addTo(map)
+     .bindPopup(location.popup);
+});
+
+
+
+
+    // Add a polygon
+    // const polygon = L.polygon([
+    //   [51.509, -0.08],
+    //   [51.503, -0.06],
+    //   [51.51, -0.047]
+    // ]).addTo(map);
+
+    // Add a circle
+    // const circle = L.circle([51.508, -0.11], {
+    //   color: 'red',
+    //   fillColor: '#f03',
+    //   fillOpacity: 0.5,
+    //   radius: 500
+    // }).addTo(map);
+
+    // Handle map clicks
+    map.on('click', function (e) {
+      alert('You clicked the map at ' + e.latlng);
+    });
+  </script>
+</body>
+</html>
